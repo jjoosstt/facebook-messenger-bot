@@ -1,16 +1,16 @@
-"# New app.py file" 
 from flask import Flask, request
 import requests
 import json
+import os  # لاستيراد مكتبة التعامل مع البيئة
 
 app = Flask(__name__)
 
-# إعدادات فيسبوك
-VERIFY_TOKEN = "MY_SECURE_BOT_TOKEN"  # رمز التحقق الذي أدخلته في فيسبوك
-PAGE_ACCESS_TOKEN = "EAAx0oiEetwcBO5fzn6XGLEPvZBZBNdkyupgGkMVZBx9NQQbZCxVUKJkJUM7gsMUSJzh2XMMda37PsACtO1q7elmE3LvVY0Bv1XCLR2AlvryomMsQNsleDB3JzoM3jJo1xqKN36LccZCoDUMg4rpqbaooeZBPGrWotOuwI9cZCaGG8KIZBgXBgeIiaZB5QZACvxJ7d21wZDZD"
+# إعدادات فيسبوك (يتم قراءتها من المتغيرات البيئية)
+VERIFY_TOKEN = os.getenv("VERIFY_TOKEN")  
+PAGE_ACCESS_TOKEN = os.getenv("PAGE_ACCESS_TOKEN")  
 
-# إعدادات Gemini API
-GEMINI_API_KEY = "AIzaSyA6f8xCCxIdy9GibMIPq3y2wuX-lBk5Pl0"
+# إعدادات Gemini API (يتم قراءتها من المتغيرات البيئية)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 # نقطة نهاية Webhook
 @app.route("/webhook", methods=["GET", "POST"])
